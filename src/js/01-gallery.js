@@ -7,10 +7,6 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 console.log(galleryItems);
 
 
-import SimpleLightbox from 'simplelightbox';
-
-import 'simplelightbox/dist/simple-lightbox.min.css';
-
 const galleryContainer = document.querySelector('.gallery');
 const imagesMarkup = creatImagesMarkup(galleryItems);
 galleryContainer.insertAdjacentHTML('beforeend', imagesMarkup);
