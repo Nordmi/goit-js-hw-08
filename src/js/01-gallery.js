@@ -4,26 +4,31 @@ import { galleryItems } from './gallery-items';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
-const galleryListEl = document.querySelector('.gallery');
-
-function createMarkUp(obj) {
-  return obj
-    .map(
-      ({
-        preview,
-        original,
-        description,
-      }) => `<li><a class="gallery__item" href="${original}">
-  <img class="gallery__image" src="${preview}" alt="${description}" />
-</a></li>`
-    )
-    .join('');
-}
-galleryListEl.innerHTML = createMarkUp(galleryItems);
-
-const lightbox = new SimpleLightbox('.gallery a', {
-  captionsData: 'alt',
-  captionDelay: '250',
-});
-
 console.log(galleryItems);
+
+
+import SimpleLightbox from 'simplelightbox';
+
+import 'simplelightbox/dist/simple-lightbox.min.css';
+
+const galleryContainer = document.querySelector('.gallery');
+const imagesMarkup = creatImagesMarkup(galleryItems);
+galleryContainer.insertAdjacentHTML('beforeend', imagesMarkup);
+
+
+
+function creatImagesMarkup (galleryItems) {
+    const markup = galleryItems.map(({preview, original, description}) => {
+        return `
+        <a class="gallery__item" href="${original}">
+         <img class="gallery__image" src="${preview}" alt="${description}" />
+        </a>
+        `;
+    }).join('');
+    return markup;
+}
+
+ new SimpleLightbox('.gallery a', {
+	captionDelay: 250,
+    captionsData: 'alt',
+})
